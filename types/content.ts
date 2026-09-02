@@ -83,6 +83,7 @@ export interface LogbookEntry {
   title: string; slug: string; date: string; summary: string; topics: string[];
   version: string; status: "DRAFT" | "PUBLISHED"; relatedMissionIds: string[];
   revisions: { version: string; date: string; note: string }[];
+  body: string[];
 }
 
 export interface ExternalLink { label: string; href: string; callsign: string; }

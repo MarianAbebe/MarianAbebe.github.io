@@ -34,6 +34,10 @@ export function ChallengeCard({ challenge, index }: { challenge: TechnicalChalle
 
 export function MissionCaseStudy({ mission }: { mission: Mission }) {
   const c = mission.caseStudy!;
+  if (c.sections) return <main className="mission-archive">
+    <MissionHero mission={mission} /><MissionMetadata mission={mission} />
+    <div className="archive-body">{c.sections.map((section, index) => <CaseStudySection key={section.id} index={index + 1} label={section.label} title={section.title} wide={Boolean(section.media?.length)}><Prose paragraphs={section.body} />{section.media?.map((media) => <EngineeringDiagram key={media.id} media={media} />)}</CaseStudySection>)}<CaseStudySection index={c.sections.length + 1} label="MANIFEST" title="Tech stack"><div className="tag-row">{mission.technologies.map((item) => <SystemTag key={item}>{item}</SystemTag>)}</div></CaseStudySection></div>
+  </main>;
   return <main className="mission-archive">
     <MissionHero mission={mission} /><MissionMetadata mission={mission} />
     <div className="archive-body">

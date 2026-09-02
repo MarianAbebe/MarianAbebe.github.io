@@ -10,6 +10,257 @@
   --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
+
+/*
+  MA-01 DEEP-SPACE THEME OVERRIDES
+  --------------------------------
+  Append this block to the END of app/globals.css.
+
+  It intentionally keeps the existing layout/typography while replacing the
+  ROAM-adjacent rust/red identity with Marian's blue-violet space palette.
+*/
+
+:root {
+  --background: #050710;
+  --surface: #0a0e1a;
+  --surface-elevated: #101628;
+
+  --text-primary: #f1efe9;
+  --text-secondary: #949baa;
+
+  /* Keep the old variable names to avoid a site-wide refactor. */
+  --mars-accent: #8c74ff;
+  --mars-accent-muted: #4b4180;
+
+  --status-green: #70d6a0;
+
+  --border: #20283c;
+  --border-bright: #536696;
+}
+
+/* selection / controls */
+::selection {
+  background: #8c74ff;
+  color: #050710;
+}
+
+.primary-button {
+  color: #070914;
+  background:
+    linear-gradient(135deg, #a992ff 0%, #7d9bff 100%);
+  border-color: #a993ff;
+  box-shadow:
+    0 0 0 1px rgb(140 116 255 / 8%),
+    0 12px 36px rgb(85 78 205 / 16%);
+}
+
+.primary-button:hover {
+  background:
+    linear-gradient(135deg, #b9a9ff 0%, #91a9ff 100%);
+}
+
+/* top navigation now feels like a glassy spacecraft frame, not black/red */
+.nav-shell {
+  background:
+    linear-gradient(
+      180deg,
+      rgb(5 7 16 / 93%),
+      rgb(5 7 16 / 84%)
+    );
+  border-bottom-color: #20283c;
+  box-shadow: 0 18px 60px rgb(0 0 0 / 16%);
+}
+
+/* old 2D landing hero fallback */
+.mars-hero {
+  background:
+    radial-gradient(
+      circle at 68% 62%,
+      rgb(82 91 177 / 19%) 0,
+      rgb(27 36 81 / 15%) 26%,
+      transparent 53%
+    ),
+    radial-gradient(
+      circle at 79% 28%,
+      rgb(140 116 255 / 11%) 0,
+      transparent 31%
+    ),
+    linear-gradient(180deg, #070a14 0%, #050710 80%);
+}
+
+.topographic {
+  opacity: 0.09;
+  background-image:
+    repeating-radial-gradient(
+      ellipse at 75% 80%,
+      transparent 0 18px,
+      #8193d8 19px 20px,
+      transparent 21px 39px
+    );
+}
+
+.mast {
+  background: #101624;
+  border-color: #7080ad;
+}
+
+.mast::after {
+  border-color: #7080ad;
+  background: #0d1220;
+}
+
+.rover-body {
+  background:
+    linear-gradient(135deg, #3e4969, #111725);
+  border-color: #7888b7;
+  color: #bec9ef;
+}
+
+.wheels i {
+  border-color: #343d58;
+  background: #060811;
+}
+
+/* content cards */
+.technical-panel,
+.mission-card,
+.signal-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgb(13 18 33 / 96%),
+      rgb(7 10 19 / 98%)
+    );
+  border-color: #20283c;
+  box-shadow: inset 0 1px 0 rgb(167 181 255 / 2.5%);
+}
+
+.mission-visual {
+  color: #626da2;
+  background:
+    radial-gradient(
+      circle at 52% 48%,
+      rgb(109 116 218 / 17%) 0,
+      rgb(31 39 77 / 11%) 31%,
+      rgb(7 10 18 / 96%) 72%
+    );
+}
+
+.profile-placeholder {
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      #0e1422 0 2px,
+      #090d17 2px 15px
+    );
+}
+
+/* journey */
+.trajectory-section {
+  background:
+    radial-gradient(
+      circle at 74% 28%,
+      rgb(94 93 180 / 8%),
+      transparent 35%
+    ),
+    linear-gradient(
+      90deg,
+      #060914,
+      #0b1020 55%,
+      #060914
+    );
+}
+
+/* recognition signals */
+.signal-pulse {
+  box-shadow:
+    0 0 0 12px #090d19,
+    0 0 0 13px var(--border),
+    0 0 30px rgb(140 116 255 / 8%);
+}
+
+/* contact */
+.contact-section {
+  background:
+    radial-gradient(
+      circle at 10% 100%,
+      rgb(85 82 174 / 17%) 0,
+      transparent 37%
+    ),
+    radial-gradient(
+      circle at 78% 25%,
+      rgb(61 86 154 / 8%) 0,
+      transparent 33%
+    ),
+    #050710;
+}
+
+/* launch page */
+.launch-page {
+  background:
+    radial-gradient(
+      circle at 78% 48%,
+      rgb(72 77 162 / 18%) 0,
+      rgb(14 19 43 / 13%) 32%,
+      transparent 58%
+    ),
+    linear-gradient(135deg, #03050b 0%, #080c19 53%, #050710 100%);
+}
+
+.planet {
+  background:
+    radial-gradient(
+      circle at 27% 20%,
+      #586b9f 0,
+      #273554 26%,
+      #10192d 55%,
+      #050814 76%
+    );
+  box-shadow:
+    -36px -34px 105px rgb(97 112 202 / 16%),
+    inset 22px 10px 45px rgb(188 200 255 / 4%);
+}
+
+.planet-light {
+  background:
+    repeating-radial-gradient(
+      ellipse at 20% 35%,
+      transparent 0 25px,
+      rgb(147 163 226 / 5%) 26px 28px,
+      transparent 29px 50px
+    );
+}
+
+.orbit {
+  border-color: #35466f;
+}
+
+/* mission case-study / interior visual polish */
+.case-study,
+.article-page,
+.interior-page {
+  background:
+    radial-gradient(
+      circle at 85% 8%,
+      rgb(84 85 184 / 5%),
+      transparent 26rem
+    ),
+    #050710;
+}
+
+/* Mars WebGL framing */
+.mars-experience,
+.mars-surface,
+.mars-stage {
+  background:
+    linear-gradient(180deg, #03050b 0%, #060913 100%);
+}
+
+/*
+  If the current globals.css contains additional literal rust/orange values,
+  Codex should replace those literals with these tokens rather than add more
+  one-off overrides. The goal is ONE coherent blue/violet identity.
+*/
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; background: var(--background); }
 body { margin: 0; background: var(--background); color: var(--text-primary); font-family: var(--font-sans), sans-serif; line-height: 1.6; }
@@ -236,3 +487,68 @@ body.modal-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .mars-experience,.hud-compass i { transition:none; }
 }
+
+/* MA-01 key-art interface: the supplied image is the entire environment. */
+.mars-key-art-experience { background: #03050b; }
+.mars-key-art { position: absolute; inset: 0; display: block; z-index: -2; }
+.mars-key-art img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center center; }
+.mars-key-art-shade { position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(90deg, rgb(3 5 11 / 45%) 0%, transparent 35%), linear-gradient(180deg, rgb(3 5 11 / 14%), transparent 40%, rgb(3 5 11 / 20%)); }
+.mars-mission-identity { position: absolute; left: clamp(1.5rem, 3vw, 3rem); top: clamp(2.3rem, 5.2vh, 4.2rem); z-index: 3; display: flex; flex-direction: column; pointer-events: none; text-shadow: 0 2px 16px rgb(0 0 0 / 72%); }
+.mars-mission-identity span,.mars-mission-identity small,.mars-mission-directive span,.mars-annotation,.mars-directory { font-family: var(--font-mono); letter-spacing: .11em; }
+.mars-mission-identity span { color: #c9c0ff; font-size: .64rem; }
+.mars-mission-identity strong { margin: .55rem 0 .65rem; color: #f1efe9; font-size: clamp(4.5rem, 9vw, 8rem); font-weight: 400; line-height: .82; letter-spacing: -.07em; }
+.mars-mission-identity small { color: #d0ced9; font-size: .64rem; }
+.mars-mission-directive { position: absolute; z-index: 3; left: clamp(1.5rem, 3vw, 3rem); top: clamp(18rem, 33vh, 23rem); width: 245px; padding: .95rem 1rem 1rem; border: 1px solid rgb(173 161 255 / 45%); background: rgb(4 6 14 / 50%); backdrop-filter: blur(5px); }
+.mars-mission-directive span { color: #b9a8ff; font-size: .58rem; }
+.mars-mission-directive p { margin: .75rem 0 0; color: #ece9e4; font-size: .82rem; line-height: 1.65; }
+.mars-annotations { position: absolute; inset: 0; z-index: 2; }
+.mars-annotation-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.mars-annotation-lines line { stroke: #a98cff; stroke-width: .12; vector-effect: non-scaling-stroke; opacity: .88; }
+.mars-annotation-lines circle { fill: #ae92ff; filter: drop-shadow(0 0 4px #8c74ff); }
+.mars-annotation { position: absolute; z-index: 1; translate: 0 -50%; display: grid; justify-items: start; gap: .22rem; max-width: 190px; padding: .35rem .45rem; border: 1px solid rgb(165 143 255 / 48%); background: rgb(5 7 16 / 52%); color: #f1efe9; text-align: left; font-size: .65rem; line-height: 1.2; cursor: pointer; text-shadow: 0 1px 8px #000; backdrop-filter: blur(4px); transition: border-color .16s ease, background .16s ease, color .16s ease; }
+.mars-annotation span { color: #b9a8ff; font-size: .52rem; }
+.mars-annotation:hover { border-color: #c9b8ff; background: rgb(12 14 33 / 82%); color: #fff; }
+.mars-directory { position: absolute; z-index: 4; bottom: 1rem; left: clamp(1.5rem, 3vw, 3rem); color: var(--text-primary); font-size: .58rem; pointer-events: auto; }
+.mars-directory summary { cursor: pointer; list-style: none; padding: .65rem .8rem; border: 1px solid rgb(160 144 238 / 52%); background: rgb(4 6 14 / 75%); }
+.mars-directory summary::-webkit-details-marker { display: none; }
+.mars-directory[open] summary { color: #c9b8ff; }
+.mars-directory > div { position: absolute; bottom: calc(100% + .5rem); width: 260px; border: 1px solid var(--border); background: rgb(4 6 14 / 94%); }
+.mars-directory button { display: flex; gap: .75rem; width: 100%; padding: .7rem; border: 0; border-bottom: 1px solid var(--border); background: none; color: var(--text-primary); text-align: left; font: inherit; cursor: pointer; }
+.mars-directory button span { color: #b9a8ff; }
+.mars-directory button:hover { background: #101528; }
+.mars-key-art-experience .surface-skip { z-index: 4; left: auto; right: clamp(1.5rem, 3vw, 3rem); bottom: 1.25rem; color: #e4e1ea; text-shadow: 0 1px 8px #000; }
+
+@media (max-width: 900px) {
+  .mars-key-art-experience { height: calc(100svh - 110px); min-height: 650px; }
+  .mars-key-art img { object-position: 48% center; }
+  .mars-mission-identity { top: 2.2rem; }
+  .mars-mission-directive { top: 15.5rem; width: min(245px, calc(100vw - 2rem)); }
+  .mars-annotations { display: none; }
+  .mars-directory { right: 1rem; left: 1rem; bottom: 1rem; }
+  .mars-directory summary { text-align: center; }
+  .mars-directory > div { width: 100%; max-height: 280px; overflow: auto; }
+}
+
+@media (max-width: 600px) {
+  .mars-key-art-experience { height: calc(100svh - 102px); min-height: 620px; }
+  .mars-key-art img { object-position: 44% center; }
+  .mars-mission-identity strong { font-size: clamp(3.9rem, 19vw, 5.6rem); }
+  .mars-mission-identity span,.mars-mission-identity small { font-size: .53rem; }
+  .mars-mission-directive { top: 13rem; }
+  .mars-key-art-experience .surface-skip { display: none; }
+}
+
+/* Stage B: evidence-first portfolio content and calibrated key-art overlay. */
+.about-headshot { width: min(180px, 100%); aspect-ratio: 1 / 1; object-fit: cover; align-self: start; border: 1px solid var(--border); filter: saturate(.82) contrast(1.04); }
+.about-secondary { max-width: 48rem; color: var(--text-secondary); font-size: 1.02rem; }
+.mission-visual-image { height: 220px; padding: 0; overflow: hidden; background: #090d17; }
+.mission-visual-image img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; filter: saturate(.86) contrast(1.04); }
+.mars-mission-identity strong { margin: .45rem 0 .55rem; font-size: clamp(3.5rem, 7vw, 6.2rem); }
+.mars-mission-directive { top: clamp(15rem, 29vh, 20rem); width: 210px; padding: .72rem .8rem .78rem; border-color: rgb(173 161 255 / 25%); background: rgb(4 6 14 / 26%); backdrop-filter: none; }
+.mars-mission-directive p { margin-top: .55rem; color: #dedbe2; font-size: .75rem; line-height: 1.55; }
+.mars-annotation { gap: .14rem; padding: 0; border: 0; background: transparent; font-size: .61rem; transition: color .16s ease; }
+.mars-annotation span { font-size: .5rem; }.mars-annotation:hover { border-color: transparent; background: transparent; color: #d9ceff; }
+.mars-compass { position: absolute; z-index: 4; left: clamp(1.5rem, 3vw, 3rem); bottom: 1.2rem; width: 78px; height: 78px; display: grid; place-items: center; border: 1px solid rgb(173 161 255 / 55%); border-radius: 50%; color: #eeeaf3; background: rgb(3 5 11 / 24%); text-shadow: 0 1px 8px #000; pointer-events: none; }
+.mars-compass::before,.mars-compass::after { content:""; position: absolute; background: rgb(173 161 255 / 36%); }.mars-compass::before { width: 1px; height: 100%; }.mars-compass::after { width: 100%; height: 1px; }
+.mars-compass i { color: #b9a8ff; font-style: normal; font-size: 1.2rem; }.mars-compass b { position: absolute; top: 5px; font: .5rem var(--font-mono); }.mars-compass span { position: absolute; top: calc(100% + .45rem); font: .5rem var(--font-mono); white-space: nowrap; }
+@media (max-width: 600px) { .mars-compass { width: 64px; height: 64px; } .about-headshot { width: 130px; } }

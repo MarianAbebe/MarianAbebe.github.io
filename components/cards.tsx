@@ -1,10 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 import type { LogbookEntry, Mission, Signal, TrajectoryPoint } from "@/types/content";
 import { ArrowLink, SystemTag, TelemetryLabel } from "./ui";
 
 export function MissionCard({ mission }: { mission: Mission }) {
   return <article className={`mission-card ${mission.featured ? "featured" : ""}`}>
     <div className="card-top"><TelemetryLabel>MISSION {"//"} {mission.missionNumber}</TelemetryLabel><TelemetryLabel>{mission.status}</TelemetryLabel></div>
-    <div className="mission-visual" aria-hidden="true"><span>+</span><i /><span>+</span></div>
+    {mission.heroImage ? <div className="mission-visual mission-visual-image"><img src={mission.heroImage} alt="" /></div> : null}
     <div><p className="domain">{mission.domain}</p><h3>{mission.title}</h3><p>{mission.summary}</p></div>
     <div className="tag-row">{mission.technologies.map((t) => <SystemTag key={t}>{t}</SystemTag>)}</div>
     <ArrowLink href={`/missions/${mission.slug}`}>OPEN MISSION FILE</ArrowLink>

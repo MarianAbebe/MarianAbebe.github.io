@@ -47,8 +47,8 @@ export function VideoEvidence({ media }: { media: MissionMedia }) {
   return <figure className="video-evidence">
     {media.technicalLabel && <span className="telemetry-label">{media.technicalLabel}</span>}
     <div className="video-frame">
-      {media.available ? <video controls preload="metadata" poster={media.poster}><source src={media.src} />Your browser does not support HTML video.</video> : media.poster && media.posterAvailable ? <div className="pending-video"><img src={media.poster} alt={media.alt} /><span>VIDEO DELIVERY PENDING</span></div> : <MediaPlaceholder media={media} />}
-      <div className="evidence-status"><span><i />STATUS // {media.available ? "EVIDENCE AVAILABLE" : "ASSET PENDING"}</span><span>LOCAL MEDIA // HTML5</span></div>
+      {media.available ? <video controls preload="metadata" poster={media.poster}><source src={media.src} />Your browser does not support HTML video.</video> : media.poster && media.posterAvailable ? <img src={media.poster} alt={media.alt} /> : <MediaPlaceholder media={media} />}
+      <div className="evidence-status"><span><i />STATUS // {media.available ? "EVIDENCE AVAILABLE" : "RECORDED-DATA STILL"}</span><span>LOCAL MEDIA // HTML5</span></div>
     </div>
     <figcaption>{media.caption}</figcaption>
     {media.deliveryNote && <p className="delivery-note">{media.deliveryNote}</p>}

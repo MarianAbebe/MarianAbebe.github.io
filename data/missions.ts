@@ -1,89 +1,33 @@
 import type { Mission } from "@/types/content";
 
+const ugvCaseStudy: NonNullable<Mission["caseStudy"]> = {
+  archiveId: "UGV-AW-001",
+  overview: ["At the University of Calgary’s Intelligent Navigation and Mapping Lab, I configured and validated ROS 2 and Autoware for an existing autonomous UGV and the Engineering Loading Dock recorded dataset.", "The work combined live sensor integration with recorded-data validation. Dataset replay exercised the configured stack; it is not presented as autonomous driving on the physical vehicle."],
+  role: ["My work covered custom sensor-kit configuration, ROS 2 and Autoware integration, topic and TF validation, point-cloud preprocessing, GNSS-assisted localization bring-up, timing and triggering, and validation across localization, perception, planning, and control.", "The vehicle, mechanical platform, sensor mounting, Autoware framework, and recorded datasets were pre-existing. My contribution was software, sensor, and integration work rather than mechanical platform design or Autoware algorithm development."],
+  platform: ["The platform is an existing four-wheel UGV with a sensor and compute assembly. The CAD image is manufacturer-provided context for the platform used during integration; it is not evidence of Marian’s mechanical or CAD work."],
+  architecture: { id: "autoware-configuration-layer", kind: "diagram", src: "/portfolio/autonomous-ugv/diagrams/autoware-configuration-layer.png", alt: "Autoware configuration-layer diagram for the UGV integration.", technicalLabel: "SYSTEM ARCHITECTURE // CONFIGURATION LAYER", caption: "Launch arguments select platform-specific sensor, vehicle, map, parameter, and TF files, connecting the generic Autoware architecture to the UGV configuration and debugging path.", available: true },
+  sensorStack: [{ label: "SENSORS", items: ["u-blox GNSS", "Xsens IMU", "NovAtel GNSS/INS", "Hesai LiDAR", "LUCID and FLIR cameras"] }, { label: "COMPUTE", items: ["NVIDIA Jetson AGX Orin", "Linux", "ROS 2"] }],
+  configuration: ["I created custom Autoware sensor-kit configurations for the research UGV and Engineering Loading Dock dataset, integrating existing GNSS, IMU, LiDAR, and camera drivers with ROS 2 on Linux.", "I extended an existing ROS 2 camera framework with LUCID ArenaSDK integration, resolved packet-loss and configuration issues, and streamed three LUCID cameras and two FLIR cameras simultaneously."],
+  softwareStack: [{ label: "AUTONOMY", items: ["Autoware", "ROS 2 Humble", "RViz", "rosbag2"] }, { label: "VALIDATION", items: ["TF", "Lanelet2", "Point-cloud maps", "Topic and timestamp inspection"] }],
+  bringUp: ["Bring-up proceeded one subsystem at a time: sensor topics and transforms, timing and point-cloud paths, GNSS initialization and localization, then perception, planning, and control.", "I repaired a Lanelet2 map, built a PCD point-cloud map from LiDAR data, configured map-projector metadata, and diagnosed TF, timestamp, GNSS initialization, and localization failures during full-stack validation."],
+  demonstration: { id: "loading-dock-demonstration", kind: "video", src: "/portfolio/autonomous-ugv/video/engineering-loading-dock-full-stack.mp4", poster: "/portfolio/autonomous-ugv/screenshots/engineering-loading-dock-rviz.jpg", posterAvailable: true, alt: "RViz view of Engineering Loading Dock recorded-data replay.", technicalLabel: "RECORDED-DATA VALIDATION // RVIZ", caption: "Engineering Loading Dock recorded data displayed in RViz during configured Autoware execution. This is evidence of dataset replay and subsystem validation, not physical autonomous driving.", deliveryNote: "Playback media is not yet published; the available image is a still from the recorded-data validation run.", available: false },
+  outcome: ["The configured environment was run against recorded Engineering Loading Dock data after the prior TF and configuration failures were addressed. The evidence demonstrates integrated replay and subsystem validation, not end-to-end autonomous operation on the physical vehicle."],
+  lessons: ["Configuration, timing, frames, maps, and sensor interfaces are coupled in a full autonomy stack. Validating each interface before treating the system as a whole made faults easier to isolate."],
+  gallery: [{ id: "ugv-platform", kind: "image", src: "/portfolio/autonomous-ugv/screenshots/manufacturer-platform-cad.png", alt: "Manufacturer CAD render of the four-wheel UGV used as integration context.", caption: "Manufacturer-provided platform CAD. Marian did not design the chassis, mechanical structure, CAD, or sensor mounts.", technicalLabel: "PLATFORM CONTEXT // MANUFACTURER CAD", available: true }]
+};
+
 export const missions: Mission[] = [
-  {
-    id: "mission-001",
-    missionNumber: "001",
-    title: "Autonomous UGV Research",
-    subtitle: "Autoware / ROS 2 Autonomous Driving Platform",
-    domain: "Autonomous Systems Research",
-    status: "ACTIVE",
-    date: "[NEEDED: Project start and end month/year]",
-    role: "ROS 2 / Autoware integration, configuration, and validation",
-    summary: "Integration and validation work for an autonomous UGV using ROS 2 and Autoware, spanning live sensor interfaces and recorded-dataset subsystem testing.",
-    technologies: ["ROS 2", "Autoware", "Sensor Integration", "Autonomous Systems"],
-    slug: "autonomous-ugv-research",
-    featured: true,
-    caseStudy: {
-      archiveId: "UGV-AW-001",
-      overview: [
-        "This research focused on configuring and integrating ROS 2 and Autoware for an existing autonomous unmanned ground vehicle platform.",
-        "The work included live sensor integration and validation as well as recorded-data testing. Dataset replay was used to exercise the configured Autoware stack without representing that replay as autonomous driving on the physical vehicle.",
-        "[NEEDED: The institution or lab name, the research objective in one or two sentences, and whether the work was individual, supervised, or part of a named team.]"
-      ],
-      role: [
-        "My engineering work covered ROS 2 and Autoware integration; sensor-kit configuration; LiDAR, GNSS, IMU, and camera integration and validation; TF and topic validation; point-cloud preprocessing and debugging; localization bring-up and debugging; GNSS-assisted initialization; time-synchronization and triggering work; dataset replay; and subsystem validation across localization, perception, planning, and control.",
-        "The physical UGV, manufacturer CAD, existing sensor hardware, Autoware framework, and recorded datasets were provided or pre-existing. This work does not claim authorship of the mechanical platform, sensor mounting, Autoware algorithms, or the recorded dataset."
-      ],
-      platform: [
-        "The research platform is an existing four-wheel UGV with an integrated sensor and compute assembly. The visual below is manufacturer-provided CAD and is included to show the physical platform context—not as evidence of mechanical design work.",
-        "[NEEDED: UGV model, onboard computer model, vehicle-interface details, network architecture, and confirmation of which visible mounted devices may be identified publicly.]"
-      ],
-      architecture: {
-        id: "autoware-configuration-layer",
-        kind: "diagram",
-        src: "/portfolio/autonomous-ugv/diagrams/autoware-configuration-layer.png",
-        alt: "Diagram mapping Autoware launch arguments through sensor, vehicle, map, parameter, and transform configuration into sensing, localization, perception, planning, control, vehicle, and system components.",
-        technicalLabel: "SYSTEM ARCHITECTURE // CONFIGURATION LAYER",
-        caption: "Configuration-layer map showing how launch arguments select platform-specific sensor, vehicle, map, parameter, and TF files, and how those files connect the generic Autoware launch architecture to the UGV setup. The artifact also records topic-flow and configuration-oriented debugging paths.",
-        available: true
-      },
-      sensorStack: [
-        { label: "PERCEPTION", items: ["LiDAR — model needed", "Camera system — model and count needed"] },
-        { label: "LOCALIZATION", items: ["GNSS — model needed", "IMU — model needed"] },
-        { label: "COMPUTE + INTERFACE", items: ["Onboard computer — model needed", "Vehicle interface — implementation details needed"] }
-      ],
-      softwareStack: [
-        { label: "FRAMEWORK", items: ["ROS 2", "Autoware"] },
-        { label: "PLATFORM CONFIGURATION", items: ["Sensor-kit configuration", "Launch arguments", "Parameters and topic mappings", "TF validation"] },
-        { label: "VALIDATION", items: ["Topic and frame inspection", "Dataset replay", "RViz visualization", "[NEEDED: Other named diagnostic tools]"] }
-      ],
-      configuration: [
-        "Autoware supplied the generic autonomous-driving framework. The integration work connected that framework to the UGV through platform-specific sensor-kit, vehicle, map, parameter, topic, and transform configuration rather than modifying or claiming authorship of Autoware’s core algorithms.",
-        "The architecture artifact documents this configuration boundary and the diagnostic path from subsystem outputs back through topics, parameters, drivers, and hardware."
-      ],
-      bringUp: [
-        "Bring-up progressed from validating sensor topics, transforms, timing, and point-cloud preprocessing into localization initialization and subsystem checks across perception, planning, and control.",
-        "The Engineering Loading Dock evidence is recorded-data validation: the configured Autoware stack was run against the Engineering Loading Dock dataset and inspected in RViz. It is separate from live hardware and sensor integration and is not presented as fully autonomous real-world driving.",
-        "[NEEDED: The exact launch sequence, package names, which subsystem outputs were confirmed, and which stages remained incomplete or degraded.]"
-      ],
-      challenges: [
-        { id: "challenge-001", title: "Time synchronization and triggering", symptom: "[NEEDED: The exact timing or triggering symptom and which sensor streams were affected.]", investigation: "[NEEDED: Commands, logs, timestamps, or plots used to compare clocks and message timing.]", rootCause: "[NEEDED: Verified clock, driver, trigger, network, or configuration cause.]", resolution: "[NEEDED: The implemented fix or workaround and how it was validated.]", takeaway: "[NEEDED: Marian’s lesson from resolving the timing issue.]", status: "TODO" },
-        { id: "challenge-002", title: "Point-cloud preprocessing", symptom: "[NEEDED: What was visibly or numerically wrong with the point cloud or downstream processing.]", investigation: "[NEEDED: Topics, frames, filters, parameters, and visualization steps inspected.]", rootCause: "[NEEDED: Verified preprocessing or configuration cause.]", resolution: "[NEEDED: The exact parameter, mapping, transform, or pipeline change.]", takeaway: "[NEEDED: Marian’s lesson from debugging the point-cloud path.]", status: "TODO" },
-        { id: "challenge-003", title: "Localization initialization", symptom: "[NEEDED: The localization failure or initialization behavior observed.]", investigation: "[NEEDED: GNSS, pose, map, TF, and localization evidence examined.]", rootCause: "[NEEDED: Verified cause, if known; otherwise state that it remained unresolved.]", resolution: "[NEEDED: GNSS-assisted initialization work performed and resulting behavior.]", takeaway: "[NEEDED: Marian’s lesson from localization bring-up.]", status: "TODO" }
-      ],
-      demonstration: {
-        id: "loading-dock-demonstration",
-        kind: "video",
-        src: "/portfolio/autonomous-ugv/video/engineering-loading-dock-full-stack.mp4",
-        poster: "/portfolio/autonomous-ugv/screenshots/engineering-loading-dock-rviz.jpg",
-        posterAvailable: true,
-        alt: "RViz view of the Engineering Loading Dock recorded dataset with point-cloud surroundings, mapped lane geometry, detected-object boxes, and Autoware subsystem controls.",
-        technicalLabel: "SYSTEM DEMONSTRATION // FULL-STACK AUTOWARE RUN",
-        caption: "Recorded-data evidence from the Engineering Loading Dock dataset displayed in RViz. The source recording shows the configured Autoware environment during dataset replay; it does not demonstrate autonomous driving on the physical UGV.",
-        deliveryNote: "VIDEO HOSTING PENDING // The 2.32 GB source must be transcoded with ffmpeg or hosted as a streaming asset before playback can be enabled.",
-        available: false
-      },
-      outcome: [
-        "The configured Autoware environment was run against the recorded Engineering Loading Dock dataset for subsystem validation across localization, perception, planning, and control. The supplied RViz recording is evidence of dataset/replay execution, not proof of end-to-end autonomous operation on the physical UGV.",
-        "[NEEDED: A precise list of outputs that were successful, remaining limitations, any unresolved faults, and the acceptance criteria used during validation.]"
-      ],
-      lessons: ["[NEEDED: Marian’s first-person reflection on the most important lesson from configuration-driven integration, timing, localization, or cross-subsystem debugging.]"],
-      gallery: [
-        { id: "ugv-platform", kind: "image", src: "/portfolio/autonomous-ugv/screenshots/manufacturer-platform-cad.png", alt: "Manufacturer-provided CAD render of a four-wheel UGV with a raised sensor assembly, two circular antenna-like devices, cameras, a cylindrical sensor, and onboard electronics.", caption: "Physical UGV configuration reference. Platform CAD provided by the UGV manufacturer; Marian did not design the chassis, mechanical structure, CAD, or sensor mounts.", technicalLabel: "PLATFORM // MANUFACTURER CAD", available: true }
-      ]
-    }
-  },
-  { id: "mission-002", missionNumber: "002", title: "[Mission Title]", subtitle: "[Mission Subtitle]", domain: "[Engineering Domain]", status: "PLANNED", date: "[Date]", role: "[Role]", summary: "[Mission Summary]", technologies: ["[Technology]"], slug: "mission-placeholder-two", featured: false },
-  { id: "mission-003", missionNumber: "003", title: "[Mission Title]", subtitle: "[Mission Subtitle]", domain: "[Engineering Domain]", status: "PLANNED", date: "[Date]", role: "[Role]", summary: "[Mission Summary]", technologies: ["[Technology]"], slug: "mission-placeholder-three", featured: false }
+  { id: "mission-001", missionNumber: "001", title: "Autonomous UGV Research", subtitle: "ROS 2 / Autoware sensor integration and validation", domain: "AUTONOMOUS SYSTEMS / RESEARCH", status: "ACTIVE", date: "MAY — AUG 2026", role: "Autonomous robotics research intern / NSERC USRA researcher", summary: "Integrated and validated ROS 2 and Autoware sensor configurations for an existing research UGV, spanning live hardware and recorded-dataset validation.", technologies: ["ROS 2", "Autoware", "Jetson AGX Orin", "LiDAR", "GNSS / INS", "Machine Vision"], slug: "autonomous-ugv-research", featured: true, heroImage: "/portfolio/autonomous-ugv/screenshots/manufacturer-platform-cad.png", caseStudy: ugvCaseStudy },
+  { id: "mission-002", missionNumber: "002", title: "CubeSat Magnetometer Payload", subtitle: "Embedded payload electronics for CalgaryToSpace", domain: "SPACECRAFT SYSTEMS / EMBEDDED HARDWARE", status: "ACTIVE", date: "NOV 2024 — PRESENT", role: "Electrical Team Co-Lead", summary: "Designed, assembled, and tested a CubeSat magnetometer PCB, then revised the sensor architecture after magnetic-interference findings.", technologies: ["KiCad", "STM32", "I2C", "UART", "PCB Design", "CubeSat Payloads"], slug: "cubesat-magnetometer-payload", featured: false, heroImage: "/portfolio/cubesat-magnetometer/pcb-render.png", caseStudy: { archiveId: "CTS-MAG-002", overview: [], role: [], sections: [
+    { id: "context", label: "CONTEXT", title: "CubeSat magnetometer payload", body: ["As CalgaryToSpace Electrical Team Co-Lead, Marian worked on a CubeSat magnetometer payload within the team’s electrical subsystem effort."] },
+    { id: "role", label: "MY ROLE", title: "Embedded board development", body: ["Marian designed and routed two magnetometer PCB revisions in KiCad, wrote STM32 firmware using I2C and UART, and assembled, brought up, and bench-tested Revision 1."] },
+    { id: "work", label: "ENGINEERING WORK", title: "Revision informed by testing", body: ["Revision 1 used an LIS2MDL sensor. Hardware validation identified excessive magnetic interference, so the next design was reworked around an MMC5983MA primary sensor with LIS2MDL redundancy. The revised schematic and routing were completed for team design review."] },
+    { id: "evidence", label: "EVIDENCE", title: "Schematic and board render", body: ["The engineering artifacts document the revised electronic design and PCB form factor."], media: [{ id: "magnetometer-pcb", kind: "diagram", src: "/portfolio/cubesat-magnetometer/pcb-render.png", alt: "KiCad PCB render of the CubeSat magnetometer payload.", caption: "PCB render of the CubeSat magnetometer payload design.", technicalLabel: "PCB RENDER // MAGNETOMETER PAYLOAD", available: true }, { id: "magnetometer-schematic", kind: "diagram", src: "/portfolio/cubesat-magnetometer/schematic.png", alt: "KiCad schematic for the CubeSat magnetometer payload.", caption: "Schematic showing the magnetometer payload electronics and interfaces.", technicalLabel: "SCHEMATIC // MAGNETOMETER PAYLOAD", available: true }] }
+  ] } },
+  { id: "mission-003", missionNumber: "003", title: "Power Monitoring Board", subtitle: "Four-layer power and telemetry hardware", domain: "ELECTRICAL DESIGN / EMBEDDED HARDWARE", status: "ARCHIVED", date: "DATE NOT DOCUMENTED", role: "Hardware Designer", summary: "Designed a four-layer power-monitoring board with regulated rails, protection, current sensing, temperature monitoring, and telemetry interfaces.", technologies: ["KiCad", "Four-Layer PCB", "TPS62130", "INA219", "Power Protection", "Telemetry"], slug: "power-monitoring-board", featured: false, heroImage: "/portfolio/power-monitoring/pcb-render.png", caseStudy: { archiveId: "PMB-003", overview: [], role: [], sections: [
+    { id: "context", label: "CONTEXT", title: "Power-monitoring hardware", body: ["This personal hardware project focused on a compact power architecture with measurement, protection, and monitoring functions."] },
+    { id: "role", label: "MY ROLE", title: "Hardware design", body: ["Marian designed the complete schematic and completed the four-layer PCB layout and routing."] },
+    { id: "system", label: "SYSTEM", title: "Power and sensing architecture", body: ["The board accepts a 10–14 V input and uses TPS62130 DC/DC regulation to provide 5 V and 3.3 V rails. It includes INA219 current sensing, NTC temperature monitoring, telemetry, filtering, reverse-polarity protection, TVS protection, and a polyfuse."] },
+    { id: "evidence", label: "EVIDENCE", title: "Schematic and board render", body: ["The following artifacts document the electrical architecture and the completed layout."], media: [{ id: "power-board-pcb", kind: "diagram", src: "/portfolio/power-monitoring/pcb-render.png", alt: "KiCad PCB render of the power-monitoring board.", caption: "PCB render showing the completed power-monitoring board layout.", technicalLabel: "PCB RENDER // POWER MONITORING", available: true }, { id: "power-board-schematic", kind: "diagram", src: "/portfolio/power-monitoring/schematic.png", alt: "KiCad schematic of the power-monitoring board.", caption: "Schematic showing regulation, protection, sensing, and telemetry functions.", technicalLabel: "SCHEMATIC // POWER MONITORING", available: true }] }
+  ] } }
 ];
