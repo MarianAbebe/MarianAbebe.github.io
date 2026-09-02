@@ -1,0 +1,4 @@
+"use client";
+import type { MarsDestination, RoverTelemetry } from "@/types/mars";
+import { MarsHUD } from "./MarsHUD";
+export function MarsFallback({destinations,onAccess,reason}:{destinations:MarsDestination[];onAccess:(site:MarsDestination)=>void;reason:string}){const telemetry:RoverTelemetry={position:[0,0,8],heading:0,speed:0,nearestId:destinations[0].id,distance:0};return <div className="mars-fallback"><div className="fallback-map" aria-hidden="true">{destinations.map((site,i)=><span className={`fallback-site fallback-site-${site.structure}`} key={site.id} style={{left:`${18+(i%3)*31}%`,top:`${24+Math.floor(i/3)*42}%`}}><i/><b>{site.site}</b></span>)}<div className="fallback-rover">MA<br/>01</div></div><p className="fallback-reason">{reason}</p><MarsHUD telemetry={telemetry} nearest={destinations[0]} destinations={destinations} onAccess={onAccess} fallback/></div>}
