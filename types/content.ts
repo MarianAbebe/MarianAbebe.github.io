@@ -54,6 +54,19 @@ export interface MissionCaseStudy {
   outcome?: string[];
   lessons?: string[];
   gallery?: MissionMedia[];
+  heroMedia?: MissionMedia;
+  sensorEvidence?: MissionMedia;
+  contextEvidence?: MissionMedia;
+  timingEvidence?: MissionMedia;
+  autowareEvidence?: MissionMedia;
+  designEvidence?: MissionMedia;
+  revisionOneEvidence?: MissionMedia;
+  revisionTwoEvidence?: MissionMedia;
+  engineeringNote?: { label: string; text: string };
+  revisionTwoStory?: { label: string; title: string; body: string[] };
+  heroLabel?: string;
+  heroMetadata?: { label: string; value: string }[];
+  factSheet?: { label: string; value: string }[];
   sections?: CaseStudySection[];
   links?: { label: string; href: string }[];
 }
@@ -61,7 +74,7 @@ export interface MissionCaseStudy {
 export interface Mission {
   id: string; missionNumber: string; title: string; subtitle: string; domain: string;
   status: MissionStatus; date: string; role: string; summary: string;
-  technologies: string[]; heroImage?: string; slug: string; featured: boolean;
+  technologies: string[]; heroImage?: string; heroImageAlt?: string; heroImagePosition?: string; slug: string; featured: boolean;
   caseStudy?: MissionCaseStudy;
 }
 

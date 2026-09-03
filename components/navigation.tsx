@@ -2,8 +2,9 @@ import Link from "next/link";
 import { StatusIndicator } from "./ui";
 
 const links = [
-  ["ABOUT", "/#about"], ["MISSIONS", "/missions"], ["JOURNEY", "/#journey"],
-  ["SYSTEMS", "/#systems"], ["SIGNALS", "/#signals"], ["LOGBOOK", "/logbook"], ["CONTACT", "/#contact"]
+  ["START", "/"], ["ABOUT", "/mars#about"], ["MISSIONS", "/mars#missions"],
+  ["JOURNEY", "/mars#journey"], ["SYSTEMS", "/mars#systems"], ["SIGNALS", "/mars#signals"],
+  ["LOGBOOK", "/mars#logbook"], ["CONTACT", "/mars#contact"]
 ];
 
 export function Navigation() {

@@ -13,7 +13,7 @@ function MediaPlaceholder({ media }: { media: MissionMedia }) {
   </div>;
 }
 
-export function EngineeringDiagram({ media }: { media: MissionMedia }) {
+export function EngineeringDiagram({ media, className = "" }: { media: MissionMedia; className?: string }) {
   const [open, setOpen] = useState(false);
   const closeButton = useRef<HTMLButtonElement>(null);
 
@@ -26,7 +26,7 @@ export function EngineeringDiagram({ media }: { media: MissionMedia }) {
     return () => { document.removeEventListener("keydown", onKeyDown); document.body.classList.remove("modal-open"); };
   }, [open]);
 
-  return <figure className="engineering-diagram">
+  return <figure className={`engineering-diagram ${className}`}>
     {media.technicalLabel && <span className="telemetry-label">{media.technicalLabel}</span>}
     <button className="diagram-trigger" type="button" onClick={() => setOpen(true)} aria-label={`Expand diagram: ${media.alt}`}>
       {media.available ? <img src={media.src} alt={media.alt} /> : <MediaPlaceholder media={media} />}
@@ -43,8 +43,8 @@ export function EngineeringDiagram({ media }: { media: MissionMedia }) {
   </figure>;
 }
 
-export function VideoEvidence({ media }: { media: MissionMedia }) {
-  return <figure className="video-evidence">
+export function VideoEvidence({ media, className = "" }: { media: MissionMedia; className?: string }) {
+  return <figure className={`video-evidence ${className}`}>
     {media.technicalLabel && <span className="telemetry-label">{media.technicalLabel}</span>}
     <div className="video-frame">
       {media.available ? <video controls preload="metadata" poster={media.poster}><source src={media.src} />Your browser does not support HTML video.</video> : media.poster && media.posterAvailable ? <img src={media.poster} alt={media.alt} /> : <MediaPlaceholder media={media} />}
