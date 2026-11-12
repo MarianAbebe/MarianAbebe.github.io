@@ -93,6 +93,7 @@ export interface System {
 }
 
 export interface LogbookEntry {
+  author?: string;
   title: string; slug: string; date: string; summary: string; topics: string[];
   version: string; status: "DRAFT" | "PUBLISHED"; relatedMissionIds: string[];
   revisions: { version: string; date: string; note: string }[];
